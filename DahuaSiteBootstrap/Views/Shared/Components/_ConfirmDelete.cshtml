@@ -1,0 +1,55 @@
+﻿@model DahuaSiteBootstrap.Helps.EntityType
+@using DahuaSiteBootstrap.Helps
+@{
+    string actionName = Model == EntityType.Task ? "Removetask" : "Removefile";
+    string keyword = Model == EntityType.File ? "файл" : "обект";
+    string param = Model == EntityType.File ? "fid" : "tid";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/icons/iconify.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+
+<body>
+   
+    <dialog id="confirm_dialog">
+        <div class="dlg-wrap">
+            <form asp-action="@actionName" asp-controller="Admin" method="post">
+                <input type="hidden" id="tidf" name="@param"/>
+                <div class="dlg-header">
+                    <span class="icf-link-delete"></span>
+                    <p>Премахване на @keyword</p>
+                </div>
+                <div class="dlg-body">
+                    <p class="dlg-textcontent">
+                        Сигурни ли сте че искате да изтриите този @keyword? Този процес не може да
+                        бъде отменен.
+                    </p>
+                    <div class="dlg-actions">
+                        <button class="action save" onclick="CloseDialog()" type="reset">Отмени</button>
+                        <button class="action delete" type="submit">Изтрии</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+</body>
+
+</html>
+
+ <script>
+
+
+     function CloseDialog(){
+         document.getElementById("confirm_dialog").close();
+     }
+
+   
+ </script>

@@ -1,0 +1,59 @@
+﻿@model DahuaSiteBootstrap.Model.Dstask;
+@using DahuaSiteBootstrap.Controllers;
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/icons/iconify.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <dialog id="upd_dialog">
+        <div class="dlg-wrap">
+            <form asp-action="Updatetask" asp-controller="Admin" method="post">
+                <input type="hidden" asp-for="Id"/>
+                <div class="dlg-header">
+
+                    <span class="icf-task-edit" style="color:black"></span>
+                    <p>Редактирайте на обект</p>
+                </div>
+                <div class="dlg-body">
+
+                    <div class="field-group">
+                        <input type="text" asp-for="Name" required autocomplete="off" placeholder="Заглавие">
+                        <input type="text" asp-for="Description" required autocomplete="off" placeholder="Описание">
+                        <input type="text" asp-for="Phone" required autocomplete="off" placeholder="Телефон на клиент">
+                    </div>
+
+                    <div class="dlg-actions">
+                        <button class="action save" onclick="CloseDialog()" type="reset"> <a asp-route="adminpage" style="color:blue;text-decoration:none;">Отмени</a></button>
+                        <button class="action delete" type="submit">Запази промените</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</body>
+</html>
+
+
+
+
+<script>
+    let dialog = document.getElementById('upd_dialog');
+
+    document.addEventListener("DOMContentLoaded", function(){
+        dialog.showModal();
+    })
+
+    function CloseDialog() {
+        dialog.close();
+    }
+</script>

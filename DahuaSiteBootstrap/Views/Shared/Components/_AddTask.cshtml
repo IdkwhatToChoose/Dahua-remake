@@ -1,0 +1,40 @@
+﻿
+@model DahuaSiteBootstrap.ViewModels.TaskVM;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/icons/iconify.css"/>
+</head>
+
+<body>
+    <dialog id="task-add-dialog">
+        <div class="dlg-wrap">
+            <form asp-action="Addtask" asp-controller="Admin" method="post">
+                <div class="dlg-header">
+                    <span class="icf-task"></span>
+                    <p>Добави обект</p>
+                </div>
+                <div class="dlg-body">
+                    <div class="field-group">
+                        <input type="text" asp-for="Name" required autocomplete="off" placeholder="Заглавие">
+                        <input type="text" asp-for="Description" required autocomplete="off" placeholder="Описание">
+                        <input type="text" asp-for="Phone" required autocomplete="off" placeholder="Телефон на клиент">
+                    </div>
+                    <div class="dlg-actions">
+                        <button class="action cancel" type="reset" onclick="{document.getElementById('task-add-dialog').close();}">Отмени</button>
+                        <button class="action save" type="submit">Запази</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </dialog>
+    
+</body>
+
+</html>

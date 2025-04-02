@@ -1,0 +1,63 @@
+﻿@model ICollection<DahuaSiteBootstrap.Model.Dsfile>
+@using DahuaSiteBootstrap.Model; 
+@using DahuaSiteBootstrap.Helps;
+
+@{
+
+    var mlinks = Model.Where(f => f.Category == FileCategory.Link_Manual.ToString());
+    var slinks = Model.Where(f => f.Category == FileCategory.Link_Software.ToString());
+
+    bool ContainsMetadata(byte[] data)
+    {
+        return FileSupport.ReadFileLines(data).
+                ToArray()
+               .Contains("LS");
+    }
+}
+<div class="links">
+    <link href="~/css/site.css" rel="stylesheet"/>
+    <div class="menu-wrap">
+        <div class="d-flex">
+        
+            <h1>Manual</h1>
+            <button class="toggle icf-chevron-down"></button>
+        </div>
+
+        <ul class="l-wrap hidden" id="1_links">
+            
+            @foreach (var manualink in mlinks)
+            {
+                <li>
+                    <a class="ds-link" href="@Url.Action("Download","Home", new {fid = manualink.Id})">
+                        <span class="icf-link"></span>
+                        <p>@manualink.DisplayName</p>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+        
+    <div class="menu-wrap">
+        <div class="d-flex">
+
+            <h1>Software</h1>
+            <button class="toggle icf-chevron-down"></button>
+
+        </div>
+
+        <ul class="l-wrap hidden" id="2_links">
+            
+            @foreach (var softlink in slinks)
+            {
+                <li>
+                    <a class="ds-link" href="@(ContainsMetadata(softlink.Data) ? FileSupport.ReadFileLink(softlink.Data) : Url.Action("Download","Home",new{fid = softlink.Id}))">
+                        <span class="icf-link"></span>
+                        <p>@softlink.DisplayName</p>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+        
+
+</div>

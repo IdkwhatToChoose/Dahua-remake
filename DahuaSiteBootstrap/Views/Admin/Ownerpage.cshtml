@@ -1,0 +1,227 @@
+﻿@model DahuaSiteBootstrap.ViewModels.OwnerData
+@using DahuaSiteBootstrap.Model
+@using DahuaSiteBootstrap.Helps
+
+@{
+    Layout = "_LayoutIn";
+    var newmodel = new DahuaSiteBootstrap.ViewModels.FileBody();
+}
+
+
+@await Html.PartialAsync("Components/_FileUpload",newmodel);
+
+<section id="about" class="about section">
+    <link href="~/css/icons/iconify.css" rel="stylesheet"/>
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Връзки</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="search-form">
+            <form>
+                <input type="search" name="searchString" placeholder="Search">
+                <button class="search-btn" type="submit">Search</button>
+            </form>
+            <div class="options">
+                <div class="option">
+                    <p>Категория:</p>
+                    <form>
+                        <input type="hidden" name="category" id="ctgfield"/>
+                        <select id="category1" asp-items="SelectCategory.Categories">
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="linkwrap mt-5">
+            @foreach(var file in Model.files)
+            {      
+                
+                    <div class="ds-link" data-category="@file.Category.Replace("_"," ")">
+                     
+                        <div>
+                            <span class="icf-link"></span>
+                        <a onclick="OpenDialog('fileNo@(file.Id)')" href="#">@file.DisplayName</a>
+                        </div>
+
+                        <div class="actions">
+
+                           <button class="wrap-btn"><i class="icf-link-edit hovered"></i></button>
+                        <button class="text-red-500 hover:underline ml-2 delete-btn wrap-btn" data-fid="@file.Id" onclick="{document.getElementById('confirm_dialog').showModal();}"><i class="icf-link-delete hovered"></i></button>
+
+                        </div>
+
+                    </div>
+                  
+                @await Html.PartialAsync("Components/_LinkInfo",file);
+            }
+          
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->
+<!-- Features Section -->
+@await Html.PartialAsync("Components/_ConfirmDelete",EntityType.File)
+<style>
+    .ds-link {
+        display: flex;
+        margin: 1px;
+        padding: 10px;
+        text-decoration: none;
+        align-items: center;
+        background-color: #3f6df765;
+        border-radius: 5px;
+        font-size: 15px;
+        animation: none;
+        min-width:14em;
+        width:fit-content;
+        outline: 1px solid transparent;
+        outline-offset: 0;
+        cursor: pointer;
+        justify-content: space-between;
+        transition: all 0.2s ease-in-out;
+        div{
+        display: flex;
+        align-items: center;
+        gap:3px;
+       }
+
+    }
+
+    .search-form {
+        display: flex;
+        gap: 0.5em;
+        padding: 6px 6px 1.3em;
+        justify-content: space-between;
+        border-bottom: 1px solid #000000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .search-form form {
+        display: flex;
+        gap: 1.2em;
+    }
+
+    .search-form form input[type="search"] {
+        padding: 9px;
+        border-radius: 5px;
+        border: 1px solid #00000349;
+        transition: all ease-in-out 0.2s;
+    }
+
+    .search-form form input[type="search"]:focus {
+        outline: none;
+        border: 1px solid rgb(0, 13, 196);
+    }
+
+    .search-btn {
+        padding: 9px;
+        border-radius: 5px;
+        border: 1px solid #000003a6;
+        background: none;
+        cursor: pointer;
+        color: rgb(4, 0, 255);
+        transition: all ease-in-out 0.15s;
+    }
+
+        .search-btn:hover {
+            background-color: rgb(4, 0, 255);
+            color: white;
+            border: 1px solid transparent;
+        }
+
+    .options {
+        display: flex;
+        gap: 1.2em;
+        .option
+
+    {
+        display: flex;
+        gap: 0.7em;
+        border-radius: 5px;
+        align-items: center;
+        padding: 10px;
+        outline: 1px solid rgba(1, 1, 78, 0.685);
+        p
+
+    {
+        margin: 0;
+        color: darkblue;
+    }
+
+    select {
+        font-size: 15px;
+        padding: 3px;
+        border: none;
+        background: none;
+        outline: none;
+        transition: all ease-in-out 0.2s;
+    }
+
+    }
+    }
+</style>
+<script>
+    let dialog = document.getElementById("confirm_dialog");
+
+    //const category = document.getElementById('category1');
+    //let ctgfield = document.getElementById('ctgfield');
+    //category.addEventListener('change', (e) => {
+    //    ctgfield.value = category.value;
+    //    category.parentElement.submit();
+    //});
+
+    function OpenDialog(dialogid){
+        let dialog = document.getElementById(`${dialogid}`);
+        dialog.showModal();
+    }
+
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            console.log("show urself")
+            const taskId = this.getAttribute('data-fid');
+            console.log();
+            const tidfield = document.getElementById("tidf");
+
+            tidfield.value = taskId;
+            // Show the confirm dialog
+            dialog.showModal();
+
+
+        });
+    });
+
+
+        let selector = document.getElementById('Icategory');
+    let area = document.getElementById('description');
+
+    selector.addEventListener('change', () => {
+       if(selector.value == "Portfolio item"){
+           area.style.display = 'block';
+       }else{
+           area.style.display = 'none';
+       }
+    });
+
+
+    document.getElementById('category1').addEventListener('change', function () {
+        const selectedCategory = this.value; // Get the selected category
+        const fileElements = document.querySelectorAll('.ds-link'); // Get all file elements
+
+        fileElements.forEach(fileElement => {
+            const fileCategory = fileElement.getAttribute('data-category'); // Get the file's category
+
+            // Show or hide the file based on the selected category
+            if (selectedCategory === '' || fileCategory === selectedCategory) {
+                fileElement.style.display = 'flex'; // Show the file
+            } else {
+                fileElement.style.display = 'none'; // Hide the file
+            }
+        });
+    });
+    
+   
+</script>

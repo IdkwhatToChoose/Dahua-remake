@@ -1,0 +1,30 @@
+﻿@model DahuaSiteBootstrap.ViewModels.FileBody
+@using DahuaSiteBootstrap.Model 
+
+<section class="about section" data-aos="fade-up" >
+    <div class="container">
+        <form asp-action="Uploadfile" asp-controller="Admin" class="upload-form" method="post" enctype="multipart/form-data">
+            <h2>Upload File</h2>
+
+            <label for="displayName">Име</label>
+            <input type="text" id="displayName" asp-for="DisplayName" name="displayName" placeholder="Въведете име на файлът" required>
+
+            <!-- Category (Select Dropdown) -->
+            <label for="category">Category:</label>
+            <select id="Icategory" name="category" asp-items="SelectCategory.Categories" asp-for="Category" required>
+            </select>
+
+            <input type="text" id="description" style="display:none;" asp-for="Description" placeholder="Описание на портфолио"/>
+
+            <!-- Display Name (Text Input) -->
+            <label for="Data">Файл:</label>
+            <input type="file" asp-for="Data" name="Data" multiple="true">
+
+
+            <!-- Submit Button -->
+            <button type="submit">Добави файл</button>
+        </form>
+    </div>
+
+</section>
+

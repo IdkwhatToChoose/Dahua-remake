@@ -1,0 +1,161 @@
+﻿.invoice {
+    font-size: 27px;
+    font-weight: bold;
+    transform: translateX(60%);
+}
+
+.stocks {
+    margin-left:auto;
+    margin-right:auto;
+    border: none;
+    position:relative;
+    bottom:10cap;
+    font-size: 1em;
+    max-width: 100%;
+
+}
+
+
+
+
+
+.stocks .atts * {
+    /*            margin-left:2%;
+            margin-right:2%;*/
+    /*display:inline;*/
+    padding-right: 9%;
+}
+
+.finalResults{
+    position:relative;
+    left:56.1%;
+    bottom:6.8em;
+    width:20em;
+}
+.finalResults div *{
+    display:inline;
+    font-size:83%;
+}
+.finalResults p{
+    margin-right:2em;
+}
+.finalResults div input{
+    text-align:center;
+    position:relative;
+    left:7em;
+    width:100px;
+}
+ .bugers{
+  padding-right:27px;
+}
+
+.stocks .values input {
+    width: 70%;
+    border-bottom: solid black 1px;
+    height: 20px;
+    margin-top: 3px;
+}
+
+#productName {
+    width: 100%;
+}
+
+.atts th {
+    text-align: right;
+}
+
+.stocks .atts, .values {
+    border: none;
+    border-bottom: 1px black solid;
+}
+
+.date {
+    margin-left: 60%;
+    margin-top: -21px;
+}
+
+#containerTableReciever {
+    margin-right: 71%;
+    transform: translateY(-30.64vh);
+    width:70%;
+    position:relative;
+    left:-30%;
+    padding-left:40px;
+   
+}
+
+
+.field {
+    display: block;
+    transform: translateX(60%);
+}
+.field p{
+    width:170px;
+    height:10px;
+    margin-right:-7vh;
+}
+
+.title, .title p {
+    margin-left: 60%;
+    font-weight: bold;
+}
+
+.field p, input {
+    display: inline-block;
+    font-size: 14.5px;
+    margin-top: -11px;
+    border: none;
+}
+
+.values {
+    margin-left: 2em;
+    padding: 1px;
+    width: 15em;
+}
+
+.button-24 {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline - block;
+    font-family: nunito,roboto,proxima - nova,"proxima nova",sans - serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+    .button-24:hover,
+    .button-24:active {
+        background-color: initial;
+        background- position: 0 0;
+        color: #FF4742;
+    }
+
+    .button-24:active {
+        opacity: .5;
+    }
+/*-------------------------------------------------------------------------*/
+
+/*        ///////////////////////////////////////////////////////////////////////////////////*/
+table {
+    border: 1.4px solid grey;
+    border-spacing: 7px;
+    letter-spacing: 0.5px;
+}
+#forPDF{
+    margin:44px;
+}

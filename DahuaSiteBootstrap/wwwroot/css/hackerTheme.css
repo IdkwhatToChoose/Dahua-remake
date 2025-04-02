@@ -1,0 +1,100 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.wrap {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #7676769e;
+}
+
+#error {
+    display: block;
+    max-width: 100%;
+}
+
+.icf-admin {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M4 22a8 8 0 1 1 16 0h-2a6 6 0 0 0-12 0zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4'/%3E%3C/svg%3E");
+}
+
+.wrap .form {
+    padding: 2em;
+    box-shadow: 0 12px 13px 2px #ccc;
+    border-radius: 8px;
+    background-color:white;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:10px;
+}
+
+.icon-wrap {
+    padding: 15px;
+    background-color: rgba(36, 75, 250, 0.89);
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+    .field-group input, .field-group p {
+        padding: 1.1em;
+        border: 1px solid #ccc;
+        border: none;
+        outline: 1.8px solid rgba(128, 128, 128, 0.589);
+        border-radius: 4px;
+        min-width: 22em;
+        max-width:100%;
+        margin-top: 1em;
+        font-size: 1em;
+        transition: all ease-in-out .2s;
+    }
+
+    .field-group p {
+        color: white;
+        font-size: 0.9em;
+        outline: none;
+        background-color: rgba(255, 0, 0, 0.849);
+    }
+
+    .field-group input:focus {
+        outline: 1.8px solid blue;
+    }
+
+button {
+    padding: 1em;
+    background-color: rgba(36, 75, 250, 0.89);
+    color: #fff;
+    border: none;
+    width: 100%;
+    height: 55px;
+    border-radius: 5px;
+    margin-top: 1.3em;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all ease-in-out .1s;
+}
+
+@media screen and (max-width: 400px) {
+    .form {
+        width: 90%;
+        margin:20px;
+    }
+}

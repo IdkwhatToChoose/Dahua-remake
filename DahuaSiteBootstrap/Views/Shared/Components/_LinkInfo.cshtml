@@ -1,0 +1,60 @@
+﻿@model DahuaSiteBootstrap.Model.Dsfile
+@using DahuaSiteBootstrap.Helps;
+@using DahuaSiteBootstrap.Model;
+
+@{
+    var file = Model;
+}
+ 
+@*<link href="~/css/icons/iconify.css" rel="stylesheet"/>
+<link href="~/css/site.css" rel="stylesheet"/>*@
+
+<dialog id="fileNo@(file.Id)">
+    <div class="dlg-wrap">
+        <form method="dialog">
+            <div class="dlg-header">
+                <span class="icf-task"></span>
+                <p>Информация за връзката</p>
+            </div>
+            <div class="dlg-body">
+                <div class="field-group">
+
+                    <div class="info-field">
+                        <i class="icf-file"></i>
+                        Име: <strong>@file.DisplayName</strong>
+                    </div>
+                    <div class="info-field">
+                        <i class="icf-file-extension"></i>
+                        Разширение на данни: <strong>@System.IO.Path.GetExtension(file.Name)</strong>
+                    </div>
+                    <div class="info-field">
+                        <a ar></a>
+                        <i class="icf-file-size"></i>
+                        Размер: <strong>@FileSupport.FormatFileSize(file.Data.LongLength)</strong>
+                    </div>
+                    <div class="info-field">
+                        <i class="icf-file-type"></i>
+                        Категория: <strong>@file.Category.Replace("_"," - ")</strong>
+                    </div>
+
+                    @if(file.Category == FileCategory.Portfolio_item.ToString())
+                    {
+                        <div class="info-field">
+                            <i class="icf-file-type"></i>
+                            Описание на портфолио: <strong>@(file.Content.Split(",")[1])</strong>
+                        </div>
+                    }
+                </div>
+                    <div class="dlg-actions">
+                        <button class="action cancel"
+                                onclick="{{document.getElementById('fileNo@(file.Id)').close();}}">
+                            Затвори прозореца
+                        </button>
+                    <a href="@Url.Action("Download","Home", new {fid = file.Id})" class="action save" style="text-decoration: none;">Изтегли</a>
+                    </div>
+
+             </div>
+        </form>
+    </div>
+</dialog>
+

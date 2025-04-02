@@ -1,0 +1,81 @@
+﻿@*@model DahuaSiteBootstrap.Model.Message
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" id="navbar-brand" href="#">EYETEH</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")" id="zaNas" onclick="ClickedZN()">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("AboutUs", "AboutUs")" id="zaNas" onclick="ClickedZN()">ЗА НАС</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Deinosti", "Deinosti")" id="deinosti" onclick="ClickedD()">ДЕЙНОСТИ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Contact", "Contact")" id="kontakti" onclick="ClickedK()">КОНТАКТИ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Downloads", "Download")" id="vruski1" onclick="ClickedV()">ВРЪЗКИ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("AdminEntry", "Admin")" id="vruski2" onclick="ClickedV()">ВХОД</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <img src="/images/computerNetwork.jpg" class="computerNetwork" width="102%" height="250px">
+    <div class="content">
+        <p class="title">КОНТАКТИ</p>
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <p>Адрес</p>
+            <div>Град Пазардик</div>
+            <div>ул. Христо Смирненски нo. 2</div>
+        </div>
+        <div>
+            <i class="fa-solid fa-phone"></i>
+            <p>Телефон</p>
+            <div>0884685997</div>
+        </div>
+        <div>
+            <i class="fa-regular fa-envelope"></i>
+            <p>E-mail</p>
+            <div>eyeteh9@abv.bg</div>
+        </div>
+
+    </div>
+    <div class="connectionWrapper">
+        <p>Свържете се с нас</p>
+        <form asp-controller="Contact" asp-action="Contact" method="post">
+            <input id="name" placeholder="Име" asp-for="Name">
+            <div>
+                <input id="tel" placeholder="Телефон" type="text" asp-for="Tel">
+                <input id="email" placeholder="E-mail" type="email" asp-for="Email">
+            </div>
+            <textarea placeholder="Съобщение" id="message" asp-for="Message1"></textarea>
+            <button class="sendBtn" type="submit" onclick="sendEmail()">Изпрати</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+*@

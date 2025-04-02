@@ -1,0 +1,471 @@
+﻿@model ICollection<DahuaSiteBootstrap.Model.Dsfile>
+@using DahuaSiteBootstrap.Model;
+@using DahuaSiteBootstrap.Helps;
+
+@{
+    Layout = "_Layout";
+    var portfolioItems = Model.Where(f => f.Category == FileCategory.Portfolio_item.ToString());
+
+    string ext = ViewBag.ext;
+}
+
+
+
+    <main class="main">
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero section dark-background">
+
+            <div id="hero-carousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="carousel-container">
+                        <h2 class="animate__animated animate__fadeInDown">Добре дошли в<span style="text-decoration:none;"> АЙТЕХ</span></h2>
+                        <p class="animate__animated animate__fadeInUp">“Айтех” е създадено през 2014 година с основен предмет на дейност изграждане на системи за сигурност, слаботокови и силнотокови електрически инсталации, автоматизация на процеси и агрегати, компютърни системи за контрол, научно-изследователска, проектантска, производствена и сервизна дейност. </p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="carousel-container">
+                        <h2 class="animate__animated animate__fadeInDown">С какво се занимаваме?</h2>
+                        <p class="animate__animated animate__fadeInUp">Фирмата е специализирана в изграждането на контролни и управляващи системи в бита и промишлеността. Благодарение на натрупания опит, сериозните познания и енергичния и мотивиран персонал от компетентни специалисти имаме голям брой успешно внедрени системи и доволни клиенти.</p>
+                    </div>
+                </div>
+
+
+
+                <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+                </a>
+
+                <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+                </a>
+
+            </div>
+
+            <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+                <defs>
+                    <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                </defs>
+                <g class="wave1">
+                    <use xlink:href="#wave-path" x="50" y="3"></use>
+                </g>
+                <g class="wave2">
+                    <use xlink:href="#wave-path" x="50" y="0"></use>
+                </g>
+                <g class="wave3">
+                    <use xlink:href="#wave-path" x="50" y="9"></use>
+                </g>
+            </svg>
+
+        </section><!-- /Hero Section -->
+        <!-- About Section -->
+        <section id="about" class="about section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>За нас</h2>
+                <p>Кои сме ние</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                        <p>
+                            Eyeteh е технологична компания, специализирана в широка гама от иновативни решения за посрещане на съвременните технологични нужди.
+                        </p>
+                        <ul>
+                            <li><i class="bi bi-check2-circle"></i> <span>Първокласни решения за камера за лична и професионална употреба.</span></li>
+                            <li><i class="bi bi-check2-circle"></i> <span>Високопроизводителни компютри, предназначени за всички видове потребители.</span></li>
+                            <li><i class="bi bi-check2-circle"></i> <span>Най-съвременни алармени системи за повишена сигурност и спокойствие.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <p>От висококачествени камери и мощни компютри до надеждни принтери и усъвършенствани алармени системи, ние доставяме продукти, които правят живота ви по-лесен и по-сигурен. Нашият ангажимент за качество, производителност и удовлетвореност на клиентите е в основата на всичко, което правим. </p>
+                        @*<a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>*@
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section><!-- /About Section -->
+        <!-- Features Section -->
+        <section id="features" class="features section">
+
+            <div class="container">
+
+                <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <li class="nav-item col-3">
+                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                            <i class="bi bi-camera"></i>
+                            <h4 class="d-none d-lg-block">Контрол на достъп</h4>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                            <i class="bi bi-alarm"></i>@*bi bi-box-seam*@
+                            <h4 class="d-none d-lg-block">Алармени системи</h4>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                            <i class="bi bi-brightness-high"></i>
+                            <h4 class="d-none d-lg-block">Соларни панели</h4>
+                        </a>
+                    </li>
+                    <li class="nav-item col-3">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+                            <i class="bi bi-command"></i>
+                            <h4 class="d-none d-lg-block">Система за пожароизвестяване</h4>
+                        </a>
+                    </li>
+                </ul><!-- End Tab Nav -->
+
+                <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="tab-pane fade active show" id="features-tab-1">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <h3>Контрол на достъпа от "Айтех"</h3>
+                                <p class="fst-italic">
+                                    Терминът „контрол на достъп“ се отнася до практиката на ограничаване достъпа до вход на имот, сграда, стая или асансьор.
+                                </p>
+                                <ul>
+                                    <li>
+                                        <i class="bi bi-check2-all"></i>
+                                        <spab>Достъпът се разрешава само на оторизирани лица чрез специфични методи.</spab>
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> <span> Използват се безконтактни карти или чипове под формата на ключодържатели.</span>.</li>
+                                </ul>
+                                <p>
+                                    Контролът на достъп цели да гарантира сигурността, като осигурява управляем и ограничен достъп само за оторизирани потребители.
+                                    С решенията на „Айтех“ можете лесно да контролирате и проследявате влизането във вашата сграда или помещение.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <img src="https://encom.ie/media/wysiwyg/AxisAccessControl.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End Tab Content Item -->
+
+                    <div class="tab-pane fade" id="features-tab-2">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <h3>Алармени системи от "Айтех"</h3>
+                                <p>
+                                    Айтех изгражда алармени системи с техника на PARADOX,
+                                    която позволява активиране, деактивиране, известяване, 
+                                    настройка и проверка на статуса на системата през мобилен телефон или интернет.
+                                    Разширените функции гарантират инсталация, която е едновременно по-бърза и надеждна.
+
+                                </p>
+                                
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> <span>Минимизира фалшивите задействания от движещи се обекти.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Позволява присъствие на домашни любимци в охранявания обект.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Поддържа дистанционно управление и известяване през мобилни устройства.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Бърза и надеждна инсталация</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img src="https://www.avitel-bg.com/xprod/2486.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End Tab Content Item -->
+
+                    <div class="tab-pane fade" id="features-tab-3">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <h3>Монтаж и инсталация соларни панели</h3>
+                                <p>
+                                    Eyeteh е специализирана в професионалната инсталация и монтаж на соларни панели Huawei за жилищни и търговски проекти.
+                                    С модерната технология на Huawei можете да намалите разходите си за енергия и да допринесете за по-зелено бъдеще.
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> <span>Експертен монтаж, гарантиращ дълготрайна издръжливост.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Комплексни услуги за поддръжка и помощни услуги.</span></li>
+                                </ul>
+                               
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <img src="https://images.pexels.com/photos/356036/pexels-photo-356036.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End Tab Content Item -->
+
+                    <div class="tab-pane fade" id="features-tab-4">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                                <p>
+                                    Системите за пожароизвестяване служат за ранно откриване на възникнали пожари и включване на сигнализация за тревога.
+                                </p>
+                                
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> <span>Локализират точното място на пожара.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Активират аларма за евакуация и потушаване на пожара.</span></li>
+                                    <li><i class="bi bi-check2-all"></i> <span>Автоматизирано известяване по телефон до 8 номера при инцидент.</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img src="https://unipos-bg.com/wp-content/uploads/2023/06/8020-1.jpg" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End Tab Content Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Features Section -->
+
+      
+        <!-- Services Section -->
+        <section id="services" class="services section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Дейности</h2>
+                <p>Какво предлагаме</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item  position-relative">
+                            <div class="icon">
+                                <i class="bi bi-phone" style="color: #0dcaf0;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Сигналноохранителни системи</h3>
+                            </a>
+                            <p>Айтех предлага съвременни сигналноохранителни системи, които осигуряват надеждна защита на вашия дом или бизнес. </p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-pass" style="color: #fd7e14;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Системи за контрол на достъп</h3>
+                            </a>
+                            <p>Системите за контрол на достъп на Айтех гарантират сигурността на обектите чрез ограничаване на достъпа. </p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-lightning" style="color: #20c997;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Електрически инсталации</h3>
+                            </a>
+                            <p>Айтех предлага проектиране и изграждане на електрически инсталации за жилищни и търговски обекти. </p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-pc" style="color: #df1529;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Компютърни системи</h3>
+                            </a>
+                            <p>Айтех предоставя изграждане и поддръжка на компютърни системи за вашия бизнес. </p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-sun" style="color:#e6e60b;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Соларни системи</h3>
+                            </a>
+                            <p>Соларните системи на Айтех предлагат енергийна ефективност и устойчиво решение за вашия дом или офис. </p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="bi bi-camera" style="color: #f3268c;"></i>
+                            </div>
+                            <a class="stretched-link">
+                                <h3>Видеонаблюдение</h3>
+                            </a>
+                            <p>Айтех предоставя решения за видеонаблюдение с висока разделителна способност и дистанционен достъп.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Services Section -->
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Портофолио</h2>
+                <p>Какво ние сме направили</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+                   
+
+                  <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+                    @foreach(var item in portfolioItems)
+                    {
+                        
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <img src="@FileSupport.GetMimeString(item)" class="img-fluid w-100" alt="@item.DisplayName">
+                            <div class="portfolio-info" style="width:100%">
+                                <h4>@item.DisplayName</h4>
+                                <p>@(item.Content.Split(",")[1])</p>
+@*                                <a href="@Url.Action("GetLightboxImage","File",new{fid = item.Id})" onclick="OpenAria()" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+*@                            </div>
+                        </div>
+
+                        <!-- End Portfolio Item -->
+                    }
+                    
+
+                  </div><!-- End Portfolio Container -->
+
+                </div>
+
+            </div>
+
+        </section><!-- /Portfolio Section -->
+        <!-- Testimonials Section -->
+      
+        <!-- Faq Section -->
+    <section id="pricing" class="pricing section">
+
+        <!-- Section Title -->
+        <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+            <h2>Връзки</h2>
+           
+        </div><!-- End Section Title -->
+        <div class="container">
+            @await Html.PartialAsync("Components/_LinkList",Model)
+        </div>
+
+
+    </section>
+        
+      
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Контакт</h2>
+                <p>Свържете се с нас</p>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade" data-aos-delay="100">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-4">
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                            <i class="bi bi-geo-alt flex-shrink-0"></i>
+                            <div>
+                                <h3>Адрес</h3>
+                            <p>
+                                Град Пазардик
+                                ул. Христо Смирненски No. 2
+                            </p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                            <i class="bi bi-telephone flex-shrink-0"></i>
+                            <div>
+                                <h3>Обади се</h3>
+                            <p>0884685997</p>
+                            </div>
+                        </div><!-- End Info Item -->
+
+                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                            <i class="bi bi-envelope flex-shrink-0"></i>
+                            <div>
+                                <h3>Имейл</h3>
+                            <p>eyeteh91@gmail.com</p>
+                            </div>
+                        </div><!-- End Info Item -->
+                    <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                        <i class="bi bi-receipt flex-shrink-0"></i>
+                        <div>
+                            <h3>Данни за фактура</h3>
+                            <p>АЙТЕХ ХН ООД</p>
+                            <p>ПАЗАРДЖИК</p>
+                            <p>ул. Градинарска 45</p>
+                            <p>BG 203958049</p>
+                            <p>Христо Райкин</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    </div>
+                    @*action="forms/contact.php"*@
+                    <div class="col-lg-8">
+                        @await Html.PartialAsync("MailForm", new DahuaSiteBootstrap.ViewModels.MailModel())
+
+                    </div><!-- End Contact Form -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+    let uls = document.getElementsByClassName("l-wrap");
+    Array.from(uls).forEach(ul => {
+        ul.previousElementSibling.addEventListener("click", function () {
+            ul.classList.toggle('hidden');
+        })
+    });
+    function OpenAria(){
+        const mainEl = document.querySelector('main');
+        mainEl.ariaHidden = false;
+    }
+    localStorage.setItem("extension","@ext");
+    //document.addEventListener('DOMContentLoaded', function () {
+    //    GLightbox({
+    //        selector: '.glightbox',
+    //        touchNavigation: true,
+    //        loop: true,
+    //        openEffect: 'zoom',
+    //        closeEffect: 'zoom',
+    //        slideEffect: 'zoom',
+    //        moreText: 'See more',
+    //        moreLength: 60,
+    //        closeButton: true,
+    //        zoomable: true
+    //    });
+    //});
+
+</script>

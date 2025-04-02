@@ -1,0 +1,35 @@
+﻿@model DahuaSiteBootstrap.ViewModels.MailModel;
+
+
+<form method="post" class="php-email-form" id="mailform" data-aos="fade-up" data-aos-delay="200" asp-controller="Home" asp-action="SendMail">
+    <div class="row gy-4">
+        @Html.AntiForgeryToken()
+        <div class="col-md-6">
+            <input type="text" name="name" class="form-control" placeholder="Вашето име" asp-for="Name" required>
+        </div>
+
+        <div class="col-md-6 ">
+            <input type="email" class="form-control" name="email" placeholder="Вашият имейл" asp-for="Email" required>
+        </div>
+
+        <div class="col-md-12">
+            <input type="text" class="form-control" name="subject" placeholder="Предмет" required="" asp-for="Subject" required>
+        </div>
+
+        <div class="col-md-12">
+            <textarea class="form-control" name="message" rows="6" placeholder="Съобщение" asp-for="Message"></textarea>
+        </div>
+
+        <div class="col-md-12 text-center" style="display:flex;flex-direction:column-reverse" id="result">
+            <div class="loading">Loading</div>
+            @if (TempData["Message"] != null)
+            {
+                <div class="@TempData["MessageType"]-message" style="">@TempData["Message"]</div>
+            }
+
+            <button type="submit">Send Message</button>
+        </div>
+
+    </div>
+</form>
+
