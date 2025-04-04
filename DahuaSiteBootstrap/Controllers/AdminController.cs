@@ -84,14 +84,13 @@ namespace DahuaSiteBootstrap.Controllers
             }
            
             bool valid_password=BCrypt.Net.BCrypt.Verify(avm.Password,admin.Password);
-            
 
             if(valid_password)
             {
                 string role = admin.Type == "nrm" ? "Admin" : "Owner";
                 bool o = admin.Type != "nrm";
 
-                if (!o) { security.Notify(admin.AdminName); }
+                if (!o) { security.Notify(admin.AdminName,true); }
                 else { 
 
                     var (message,code) = security.ConfirmIdentity(admin.AdminName, admin.Email);
@@ -106,6 +105,7 @@ namespace DahuaSiteBootstrap.Controllers
 
                 return RedirectToRoute($"{role.ToLower()}page");
             }
+            security.Notify(admin.AdminName, false);
             TempData["Message"] = "Грешно име или парола. Моля опитайте отново";
             return RedirectToRoute("authentication");
         }

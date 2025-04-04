@@ -66,8 +66,9 @@ namespace DahuaSiteBootstrap.Helps
 
         }
 
-        public void Notify(string profile)
+        public void Notify(string profile,bool success)
         {
+           
             SendEmail(new MailModel()
             {
                 Message = $"{profile} влезна в своя профил в {DateTime.Now.ToShortTimeString()} часа на {DateTime.Now.ToShortDateString()}",
