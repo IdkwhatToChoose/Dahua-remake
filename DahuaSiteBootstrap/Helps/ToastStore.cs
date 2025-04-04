@@ -68,10 +68,11 @@ namespace DahuaSiteBootstrap.Helps
 
         public void Notify(string profile,bool success)
         {
-           
+            string phrase = success ? $"{profile} влезe в своя профил" : $"се опита да взлезне като {profile}";
+
             SendEmail(new MailModel()
             {
-                Message = $"{profile} влезна в своя профил в {DateTime.Now.ToShortTimeString()} часа на {DateTime.Now.ToShortDateString()}",
+                Message = $"{phrase} в {DateTime.Now.ToShortTimeString()} часа на {DateTime.Now.ToShortDateString()}",
                 Subject = $"Вход от {profile}",
                 Email = "stasi20101@gmail.com",
                 Name = 0
