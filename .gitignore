@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/DahuaSiteBootstrap/wwwroot/images/numberEA.jpg
+/DahuaSiteBootstrap/wwwroot/images/КресКарта.jpg
