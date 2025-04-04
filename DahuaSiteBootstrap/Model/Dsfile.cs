@@ -18,7 +18,6 @@ public partial class Dsfile
 
     public string? Content { get; set; }
 }
-
 public enum FileCategory
 {
     Link_Software,
@@ -28,13 +27,14 @@ public enum FileCategory
 }
 public static class SelectCategory
 {
-    public static List<SelectListItem> Categories = new List<SelectListItem> { new SelectListItem { Disabled = true,Text="Изберете категория",Value="none",Selected=true } };
+    public static List<SelectListItem> Categories = new List<SelectListItem> { new SelectListItem { Disabled = true, Text = "Изберете категория", Value = "none", Selected = true } };
 
     static SelectCategory()
     {
-        foreach (string category in Enum.GetNames(typeof(FileCategory))) {
-        
-            Categories.Add(new SelectListItem { Text = category.Replace("_"," "),Value=category.Replace("_"," ") });
+        foreach (string category in Enum.GetNames(typeof(FileCategory)))
+        {
+
+            Categories.Add(new SelectListItem { Text = category.Replace("_", " "), Value = category.Replace("_", " ") });
 
         }
     }

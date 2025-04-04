@@ -23,6 +23,8 @@ public partial class DahuaSiteCopyContext : DbContext
 
     public virtual DbSet<Dstask> Dstasks { get; set; }
 
+    public virtual DbSet<Notification> Notifications { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=DESKTOPCOMP;Initial Catalog=DahuaSiteCopy;Trusted_Connection=True;Encrypt=False;Integrated Security=True;TrustServerCertificate=True;");
@@ -37,6 +39,10 @@ public partial class DahuaSiteCopyContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("admin_name");
+            entity.Property(e => e.Email)
+                .HasMaxLength(250)
+                .IsUnicode(false)
+                .HasColumnName("email");
             entity.Property(e => e.Password)
                 .IsUnicode(false)
                 .HasColumnName("password");
@@ -79,7 +85,7 @@ public partial class DahuaSiteCopyContext : DbContext
             entity.Property(e => e.Category)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.Content).HasMaxLength(50);
+            entity.Property(e => e.Content).HasMaxLength(350);
             entity.Property(e => e.DisplayName)
                 .HasMaxLength(110)
                 .HasColumnName("Display_name");
@@ -106,6 +112,22 @@ public partial class DahuaSiteCopyContext : DbContext
             entity.HasOne(d => d.Admin).WithMany(p => p.Dstasks)
                 .HasForeignKey(d => d.AdminId)
                 .HasConstraintName("FK_DSTasks_Admin");
+        });
+
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.Property(e => e.Aid).HasColumnName("aid");
+            entity.Property(e => e.Message)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("message");
+            entity.Property(e => e.Sent)
+                .HasColumnType("datetime")
+                .HasColumnName("sent");
+            entity.Property(e => e.Title)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("title");
         });
 
         OnModelCreatingPartial(modelBuilder);

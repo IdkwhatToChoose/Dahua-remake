@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DahuaSiteBootstrap.Controllers
 {
-    public class FileController : Controller
+    public class NotificationController : Controller
     {
         private DahuaSiteCopyContext _db = new DahuaSiteCopyContext();
         

@@ -12,8 +12,10 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO.Compression;
 using System.Drawing.Imaging;
-using System.Runtime.CompilerServices;
 using ImageMagick;
+using System.Numerics;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace DahuaSiteBootstrap.Helps
 {
@@ -31,7 +33,6 @@ namespace DahuaSiteBootstrap.Helps
                 // Credentials
                 var credentials = new NetworkCredential("eyeteh91@gmail.com", APP_PASSWORD);
 
-                // Mail message
                 var mail = new MailMessage()
                 {
                     From = new MailAddress(mailbody.Email),
@@ -41,9 +42,9 @@ namespace DahuaSiteBootstrap.Helps
                 };
 
                 mail.IsBodyHtml = true;
-                mail.To.Add(new MailAddress("eyeteh91@gmail.com"));
-
-                // Smtp client
+                mail.To.Add(new MailAddress(mailbody.To ?? "eyeteh91@gmail.com"));
+                
+     
                 var client = new SmtpClient()
                 {
                     Port = 587,
@@ -65,16 +66,58 @@ namespace DahuaSiteBootstrap.Helps
 
         }
 
-        public bool ConfirmEmail(string email)
+        public void Notify(string profile)
         {
-            try
+            SendEmail(new MailModel()
             {
-                MailAddress ma = new MailAddress(email);
-                return true;
-            }
-            catch { return false; }
+                Message = $"{profile} влезна в своя профил в {DateTime.Now.ToShortTimeString()} часа на {DateTime.Now.ToShortDateString()}",
+                Subject = $"Вход от {profile}",
+                Email = "stasi20101@gmail.com",
+                Name = 0
+            });
+        }
+        public (string,int) ConfirmIdentity(string name,string to)
+        {
+            Random random = new Random();
+            int code = random.Next(100000, 999999);
+
+            SendEmail(new MailModel()
+            {
+                Subject = "Влизте във вашия профил",
+                Message = $"Потвърдете че това сте вие {name}. Код за потвърждаване: {code}",
+                Email = "eyeteh91@gmail.com",
+                To = to,
+                Name = 0
+            });
+            return ($"6-цифрен код за потвърждаване на идентичност бе изпратен на {to}.Въведете кода тук.", code);
         }
 
+        public async Task Authenticate(string name, string role, int id, HttpContext context)
+        {
+            bool o = role.First().ToString() == "o";
+
+            string initial = name.First().
+                             ToString().
+                             ToUpper();
+
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier,id.ToString()),
+                    new Claim(ClaimTypes.Role, role),
+                    new Claim(ClaimTypes.Upn,initial)
+                };
+
+            var claimsIdentity = new ClaimsIdentity(claims, "CookieAuth");
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = true,
+                ExpiresUtc = o ? DateTime.Now.AddMinutes(30) : DateTime.Now.AddHours(4),
+
+            };
+
+            await context.SignInAsync("CookieAuth", new ClaimsPrincipal(claimsIdentity), authProperties);
+        }
 
     }
     public static class FileSupport

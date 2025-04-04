@@ -27,6 +27,17 @@ namespace DahuaSiteBootstrap.Helps
                     controller = "Admin",
                     action = "Signin"
                 }
+               
+            );
+            _app.MapControllerRoute(
+                name: "2fa",
+                pattern: "verificationcode",
+                defaults: new
+                {
+                    controller = "Admin",
+                    action = "TwoFactorAuth"
+                }
+
             );
             _app.MapControllerRoute(
                 name:"adminpage",
@@ -56,7 +67,7 @@ namespace DahuaSiteBootstrap.Helps
 
                }
            );
-
+            
 
         }
     }

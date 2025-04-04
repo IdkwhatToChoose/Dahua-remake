@@ -13,5 +13,7 @@ public partial class Admin
 
     public string? Type { get; set; }
 
+    public string? Email { get; set; }
+
     public virtual ICollection<Dstask> Dstasks { get; } = new List<Dstask>();
 }

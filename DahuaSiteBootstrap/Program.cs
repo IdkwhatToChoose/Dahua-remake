@@ -4,6 +4,14 @@ using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddAuthentication("CookieAuth")
             .AddCookie("CookieAuth", options =>
@@ -11,14 +19,8 @@ builder.Services.AddAuthentication("CookieAuth")
                 options.LoginPath = "/signin"; // Redirect to login page
             });
 
-//builder.Services.Configure<FormOptions>(options =>
-//{
-//    options.MultipartBodyLengthLimit = 200_000_000; // 200 MB limit
-//    options.ValueLengthLimit = int.MaxValue;
-//    options.MultipartHeadersLengthLimit = 300_000_000;
-//});
 
-builder.Services.AddControllersWithViews();
+
 
 
 var app = builder.Build();
@@ -42,6 +44,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

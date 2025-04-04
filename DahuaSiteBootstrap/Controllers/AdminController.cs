@@ -12,7 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Data;
-using Microsoft.VisualBasic;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace DahuaSiteBootstrap.Controllers
 {
@@ -28,60 +29,84 @@ namespace DahuaSiteBootstrap.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> CrtAdmin(AdminViewModel body)
-        //{
-        //    Admin admin = new Admin()
-        //    {
-        //        AdminName = body.AdminName,
-        //        Password = BCrypt.Net.BCrypt.HashPassword(body.Password),
-        //    };
+        [AllowAnonymous]
+        public IActionResult TwoFactorAuth()
+        {
+            if(HttpContext.Session.GetString("2faCode") == null)
+            {
+                return RedirectToRoute("authentication");
+            }
+            return View();
+        }
 
-        //    await _db.Admins.AddAsync(admin);
-        //    await _db.SaveChangesAsync();
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> VerifyAuthCode([FromForm] string enteredCode) {
 
-        //    return Content($"Admin {admin.AdminName} saved!");
-        //}
+            Support security = new Support();
 
+            string storedCode = HttpContext.Session.GetInt32("2faCode").ToString();
+            var aid = HttpContext.Session.GetInt32("aid");
+
+            if(string.IsNullOrEmpty(storedCode) || aid == null)
+            {
+                TempData["Message"] = "Сесията е изтекла. Моля влезте отново във профила си";
+                return RedirectToRoute("authenticate");
+            }
+
+            if(storedCode == enteredCode)
+            {
+                Admin a = await _db.Admins.FindAsync(aid);
+
+                HttpContext.Session.Remove("2faCode");
+                HttpContext.Session.Remove("aid");
+
+                await security.Authenticate(a.AdminName, "Owner", a.Id, HttpContext);
+                return RedirectToRoute("ownerpage");
+
+              
+            }
+            TempData["Message"] = "Грешен код за верификация. Опитайте отново или регенерирайте кода си.";
+            return RedirectToAction("2fa");
+        }
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Signin(AdminViewModel avm)
         {
+            Support security = new Support();
+
             Admin? admin = await _db.Admins.FirstOrDefaultAsync(x => x.AdminName == avm.AdminName);
             if (admin == null)
             {
+                TempData["Message"] = "Работникът не е намерен. Опитайте с друго име";
                 return RedirectToRoute("authentication");
             }
            
             bool valid_password=BCrypt.Net.BCrypt.Verify(avm.Password,admin.Password);
+            
 
             if(valid_password)
             {
                 string role = admin.Type == "nrm" ? "Admin" : "Owner";
-                string initial = admin.AdminName.First().
-                                 ToString().
-                                 ToUpper();
+                bool o = admin.Type != "nrm";
 
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier,admin.Id.ToString()),
-                    new Claim(ClaimTypes.Role, role),
-                    new Claim(ClaimTypes.Upn,initial)
-                };
+                if (!o) { security.Notify(admin.AdminName); }
+                else { 
 
-                var claimsIdentity = new ClaimsIdentity(claims, "CookieAuth");
+                    var (message,code) = security.ConfirmIdentity(admin.AdminName, admin.Email);
+                    HttpContext.Session.SetInt32("2faCode", code);
+                    HttpContext.Session.SetInt32("aid", admin.Id);
 
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    ExpiresUtc = DateTime.Now.AddMinutes(30),
-                    
-                };
+                    TempData["2FA-message"] = message;
+                    return RedirectToRoute("2fa");
+                }
 
-                await HttpContext.SignInAsync("CookieAuth", new ClaimsPrincipal(claimsIdentity), authProperties);
+                await security.Authenticate(admin.AdminName, role, admin.Id, HttpContext);
 
                 return RedirectToRoute($"{role.ToLower()}page");
             }
+            TempData["Message"] = "Грешно име или парола. Моля опитайте отново";
             return RedirectToRoute("authentication");
         }
         

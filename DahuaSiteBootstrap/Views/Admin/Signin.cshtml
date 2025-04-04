@@ -31,7 +31,8 @@
 
     <!-- Main CSS File -->
     <link href="/css/main.css" rel="stylesheet">
-
+@*    <link href="/css/site.css" rel="stylesheet"/>
+*@
     <!-- =======================================================
     * Template Name: Selecao
     * Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
@@ -42,6 +43,10 @@
 </head>
 
 <body class="index-page" style="background-color:#696969ab">
+    @if (TempData["Message"] != null)
+    {
+        <dialog open class="result-dialog error">@TempData["Message"]</dialog>
+    }
 
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">

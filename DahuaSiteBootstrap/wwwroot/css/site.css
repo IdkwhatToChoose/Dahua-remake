@@ -1,3 +1,41 @@
+.result-dialog {
+    display: flex;
+    margin: 10px auto;
+    position: fixed;
+    width: fit-content;
+    max-width: 35em;
+    padding: 12px 1.2em;
+    border-radius: 6px;
+    box-shadow: 0 0 15px 5px #50505073;
+    transition: all 0.4s;
+    &[open]
+
+{
+    opacity: 1;
+    top: 0;
+
+    @starting-style {
+        opacity: 0;
+        top: -120px;
+    }
+}
+
+
+&:not([open]) {
+    opacity: 0;
+    top: -120px;
+}
+
+}
+.success {
+    background: #00b1009d;
+    color: #000;
+}
+.error {
+    background: #ff02029d;
+    color: #000;
+}
+
 dialog {
     width: fit-content;
     position: fixed;

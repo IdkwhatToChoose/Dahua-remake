@@ -10,59 +10,63 @@
 
 @await Html.PartialAsync("Components/_FileUpload",newmodel);
 
-<section id="about" class="about section">
-    <link href="~/css/icons/iconify.css" rel="stylesheet"/>
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Връзки</h2>
-    </div><!-- End Section Title -->
+<main class="main">
+    <section id="about" class="about section">
+        <link href="~/css/icons/iconify.css" rel="stylesheet" />
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Връзки</h2>
+        </div><!-- End Section Title -->
 
-    <div class="container">
-        <div class="search-form">
-            <form>
-                <input type="search" name="searchString" placeholder="Search">
-                <button class="search-btn" type="submit">Search</button>
-            </form>
-            <div class="options">
-                <div class="option">
-                    <p>Категория:</p>
-                    <form>
-                        <input type="hidden" name="category" id="ctgfield"/>
-                        <select id="category1" asp-items="SelectCategory.Categories">
-                        </select>
-                    </form>
+        <div class="container">
+            <div class="search-form">
+                <form>
+                    <input type="search" name="searchString" placeholder="Search">
+                    <button class="search-btn" type="submit">Search</button>
+                </form>
+                <div class="options">
+                    <div class="option">
+                        <p>Категория:</p>
+                        <form>
+                            <input type="hidden" name="category" id="ctgfield" />
+                            <select id="category1" asp-items="SelectCategory.Categories">
+                            </select>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="linkwrap mt-5">
-            @foreach(var file in Model.files)
-            {      
-                
+            <div class="linkwrap mt-5">
+                @foreach (var file in Model.files)
+                {
+
                     <div class="ds-link" data-category="@file.Category.Replace("_"," ")">
-                     
+
                         <div>
                             <span class="icf-link"></span>
-                        <a onclick="OpenDialog('fileNo@(file.Id)')" href="#">@file.DisplayName</a>
+                            <a onclick="OpenDialog('fileNo@(file.Id)')" href="#">@file.DisplayName</a>
                         </div>
 
                         <div class="actions">
 
-                           <button class="wrap-btn"><i class="icf-link-edit hovered"></i></button>
-                        <button class="text-red-500 hover:underline ml-2 delete-btn wrap-btn" data-fid="@file.Id" onclick="{document.getElementById('confirm_dialog').showModal();}"><i class="icf-link-delete hovered"></i></button>
+                            <button class="wrap-btn"><i class="icf-link-edit hovered"></i></button>
+                            <button class="text-red-500 hover:underline ml-2 delete-btn wrap-btn" data-fid="@file.Id" onclick="{document.getElementById('confirm_dialog').showModal();}"><i class="icf-link-delete hovered"></i></button>
 
                         </div>
 
                     </div>
-                  
-                @await Html.PartialAsync("Components/_LinkInfo",file);
-            }
-          
+
+                    @await Html.PartialAsync("Components/_LinkInfo",file)
+                    ;
+                }
+
+            </div>
+
         </div>
 
-    </div>
+    </section><!-- /About Section -->
+</main>
 
-</section><!-- /About Section -->
 <!-- Features Section -->
 @await Html.PartialAsync("Components/_ConfirmDelete",EntityType.File)
 <style>
